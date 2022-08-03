@@ -22,7 +22,8 @@ public class CorsConfig {
 
         //config.addAllowedOriginPattern("*");
 
-        config.addAllowedOrigin("http://localhost:3000");
+        //config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("https://master.d1y7zww8xijf8t.amplifyapp.com");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

@@ -1,19 +1,24 @@
 jwt:
-  secret: 19950323
+  secret: ${jwt.secret}
+
+server:
+  port: 5000
+  servlet:
+    encoding:
+      charset: utf-8
 
 spring:
   main:
     allow-circular-references: true
   datasource:
-    url: jdbc:mariadb://localhost:3306/omechu
+    url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}
     driver-class-name: org.mariadb.jdbc.Driver
-    username: omechu
-    password: 1234
-    connectionInitSql: "SET NAMES 'utf8mb4'"
+    username: ${rds.username}
+    password: ${rds.password}
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         #show_sql: true
