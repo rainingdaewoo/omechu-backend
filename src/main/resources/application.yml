@@ -1,0 +1,52 @@
+jwt:
+  secret: 19950323
+
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:mariadb://localhost:3306/omechu
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: omechu
+    password: 1234
+    connectionInitSql: "SET NAMES 'utf8mb4'"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        #show_sql: true
+        format_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 821135995999-uuf1m7ejrnh5q3m77a9dkrh5bva599q1.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+          kakao:
+            client-id: 3c7e2a6cfb8ccd18568bc4e204e5d3ab
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            client-name: Kakao
+            scope:
+              - profile_nickname
+              - account_email
+
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+logging.level:
+  org.hibernate.SQL: debug
+  #org.hibernate.type: trace
