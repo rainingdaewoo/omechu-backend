@@ -33,4 +33,9 @@ public class YoutubeContentController {
         return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); // 200
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "<h1>aws-v5</h1>";
+    }
+
 }
