@@ -22,10 +22,10 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	asciidocVersion = "2.0.6.RELEASE"
-	snippetsDir = file('build/generated-snippets')
-}
+//ext {
+//	asciidocVersion = "2.0.6.RELEASE"
+//	snippetsDir = file('build/generated-snippets')
+//}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -47,8 +47,8 @@ dependencies {
 	// querydsl 관련 끝
 
 	// Spring REST Docs 관련 시작
-	asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor:${asciidocVersion}"
-	testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:${asciidocVersion}"
+	// asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor:${asciidocVersion}"
+	// testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:${asciidocVersion}"
 	// Spring REST Docs 관련 끝
 
 	compileOnly 'org.projectlombok:lombok'
@@ -64,24 +64,24 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-test {
-	outputs.dir snippetsDir
-}
-
-asciidoctor {
-	inputs.dir snippetsDir
-	configurations 'asciidoctorExt'
-	dependsOn test
-}
-
-bootJar {
-	dependsOn asciidoctor
-
-	copy {
-		from asciidoctor.outputDir
-		into "src/main/resources/static/docs"
-	}
-}
+//test {
+//	outputs.dir snippetsDir
+//}
+//
+//asciidoctor {
+//	inputs.dir snippetsDir
+//	configurations 'asciidoctorExt'
+//	dependsOn test
+//}
+//
+//bootJar {
+//	dependsOn asciidoctor
+//
+//	copy {
+//		from asciidoctor.outputDir
+//		into "src/main/resources/static/docs"
+//	}
+//}
 
 jar {	// plain 파일 생성하지 않는 설정
 	enabled = false

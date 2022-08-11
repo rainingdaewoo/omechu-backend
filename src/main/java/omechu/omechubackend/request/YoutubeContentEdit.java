@@ -4,14 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import omechu.omechubackend.exception.InvalidRequest;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 @ToString
-public class PostYoutubeContentCreate {
+public class YoutubeContentEdit {
 
     @NotBlank(message = "가게 이름을 입력해주세요.")
     private String storeName;
@@ -28,21 +27,16 @@ public class PostYoutubeContentCreate {
     @NotBlank(message = "해당 가게의 네이버 URL을 입력해주세요.")
     private String storeNaverURL;
 
+    private Long youtubeContentId;
 
-    public PostYoutubeContentCreate() {
+    public YoutubeContentEdit() {
     }
 
     @Builder
-    public PostYoutubeContentCreate(String storeName, String youtubeURL, String storeAddress, String youTuber) {
+    public YoutubeContentEdit(String storeName, String youtubeURL, String storeAddress, String youTuber) {
         this.storeName = storeName;
         this.youtubeURL = youtubeURL;
         this.storeAddress = storeAddress;
         this.youTuber = youTuber;
     }
-
- /*   public void validate() {
-        if( title.contains("바보") ) {
-            throw new InvalidRequest("title", "제목에 바보를 포함할 수 없습니다.");
-        }
-    }*/
 }

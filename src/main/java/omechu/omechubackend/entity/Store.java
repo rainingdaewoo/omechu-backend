@@ -39,5 +39,20 @@ public class Store {
         this.storeNaverURL = storeNaverURL;
     }
 
+    public StoreEditor.StoreEditorBuilder toStoreEditor() {
+        return StoreEditor.builder()
+                .storeName(storeName)
+                .address(address)
+                .storeNaverURL(storeNaverURL)
+                .phone(phone);
+    }
+
+    public void editStore(StoreEditor storeEditor) {
+        this.storeName = storeEditor.getStoreName();
+        this.address = storeEditor.getAddress();
+        this.phone = storeEditor.getPhone();
+        this.storeNaverURL = storeEditor.getStoreNaverURL();
+    }
+
 
 }

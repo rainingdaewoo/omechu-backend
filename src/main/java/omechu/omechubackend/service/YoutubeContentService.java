@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import omechu.omechubackend.entity.Store;
 import omechu.omechubackend.entity.YoutubeContent;
-import omechu.omechubackend.exception.PostNotFound;
 import omechu.omechubackend.repository.YoutubeContentRepository;
 import omechu.omechubackend.repository.StoreRepository;
-import omechu.omechubackend.request.PostYoutubeContentCreate;
-import omechu.omechubackend.response.PostResponse;
+import omechu.omechubackend.request.YoutubeContentCreate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +23,7 @@ public class YoutubeContentService {
      * 유튜브 영상 맛집 작성
      * @param request
      */
-    public YoutubeContent writeYoutubeContent(PostYoutubeContentCreate request) {
+    public YoutubeContent writeYoutubeContent(YoutubeContentCreate request) {
 
         Store store = Store.builder()
                 .storeName(request.getStoreName())
@@ -46,7 +44,7 @@ public class YoutubeContentService {
             youtubeId = request.getYoutubeURL().substring(startYoutubeId + 3, lastYoutubeId);
         }
 
-        String imageURL = "https://i1.ytimg.com/vi/"+ youtubeId + "/default.jpg";
+        String imageURL = "https://i1.ytimg.com/vi/"+ youtubeId + "/mqdefault.jpg";
 
         log.debug("==============유튜브 영상 이미지 링크 추출 끝==============");
 

@@ -37,4 +37,16 @@ public class YoutubeContent {
         this.store = store;
     }
 
+    public YoutubeContentEditor.YoutubeContentEditorBuilder toYoutubeContentEditor() {
+        return YoutubeContentEditor.builder()
+                .URL(URL)
+                .imageURL(imageURL)
+                .youtuber(youtuber);
+    }
+
+    public void editYoutubeContent(YoutubeContentEditor youtubeContentEditor) {
+        this.URL = youtubeContentEditor.getURL();
+        this.imageURL = youtubeContentEditor.getImageURL();
+        this.youtuber = youtubeContentEditor.getYoutuber();
+    }
 }

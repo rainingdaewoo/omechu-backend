@@ -41,11 +41,9 @@ public class ExceptionController {
                 .validation(validationInitialValue)
                 .build();
 
-
         for (FieldError fieldError : e.getFieldErrors() ) {
             response.addValidation(fieldError.getField(), fieldError.getDefaultMessage());
         }
-
         return response;
     }
 
