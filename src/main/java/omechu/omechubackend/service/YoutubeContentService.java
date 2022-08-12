@@ -27,8 +27,10 @@ public class YoutubeContentService {
 
         Store store = Store.builder()
                 .storeName(request.getStoreName())
+                .category(request.getCategory())
                 .address(request.getStoreAddress())
                 .storeNaverURL(request.getStoreNaverURL())
+                .hashtag(request.getHashtag())
                 .build();
 
         storeRepository.save(store);

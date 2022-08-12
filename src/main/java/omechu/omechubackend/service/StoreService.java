@@ -7,6 +7,7 @@ import omechu.omechubackend.exception.PostNotFound;
 import omechu.omechubackend.repository.StoreRepository;
 import omechu.omechubackend.repository.YoutubeContentRepository;
 import omechu.omechubackend.request.PostEdit;
+import omechu.omechubackend.request.PostSearch;
 import omechu.omechubackend.request.YoutubeContentEdit;
 import omechu.omechubackend.response.StoreResponseDto;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,11 @@ public class StoreService {
         return storeRepository.findAll().stream().map(store -> new StoreResponseDto(store)).collect(Collectors.toList());
     }
 
+    public List<StoreResponseDto> getYoutubeContent(PostSearch postSearch) {
+        return storeRepository.getStoreList(postSearch).stream().map(store -> new StoreResponseDto(store)).collect(Collectors.toList());
+    }
+
+
     public StoreResponseDto findById(Long id) {
         Store findStore = storeRepository.findById(id)
                 .orElseThrow( ()->new IllegalArgumentException("id를 확인해주세요") );
@@ -60,8 +66,10 @@ public class StoreService {
         StoreEditor storeEditor = storeEditorBuilder
                 .storeNaverURL(youtubeContentEdit.getStoreNaverURL())
                 .storeName(youtubeContentEdit.getStoreName())
+                .category(youtubeContentEdit.getCategory())
                 .phone(null)
                 .address(youtubeContentEdit.getStoreAddress())
+                .hashtag(youtubeContentEdit.getHashtag())
                 .build();
 
         store.editStore(storeEditor);
@@ -98,5 +106,12 @@ public class StoreService {
         youtubeContent.editYoutubeContent(youtubeContentEditor);
 
         log.info("==============유튜브 컨텐츠 수정 끝 ==============");
+    }
+
+    public void deleteStore(Long id) {
+        Store store = storeRepository.findById(id)
+                .orElseThrow(() -> new PostNotFound());
+
+        storeRepository.delete(store);
     }
 }

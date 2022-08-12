@@ -12,17 +12,22 @@ public class StoreResponseDto {
 
     private final Long id;
     private final String storeName;
+
+    private final String category;
     private final String address;
     private final String storeNaverURL;
     private final String phone;
+    private final String hashtag;
     private final List<YoutubeContentResponseDto> youtubeContents;
 
     public StoreResponseDto(Store store) {
         this.id = store.getId();
         this.storeName = store.getStoreName();
         this.address = store.getAddress();
+        this.category = store.getCategory();
         this.storeNaverURL = store.getStoreNaverURL();
         this.phone = store.getPhone();
+        this.hashtag = store.getHashtag();
         this.youtubeContents =store.getYoutubeContents().stream().map(youtubeContent -> new YoutubeContentResponseDto(youtubeContent)).collect(Collectors.toList());
     }
 

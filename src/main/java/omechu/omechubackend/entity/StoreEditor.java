@@ -15,13 +15,21 @@ public class StoreEditor {
 
     private final String storeNaverURL;
 
+    private final String category;
+
     private final String phone;
 
+    private final String hashtag;
+
+
+
     @Builder
-    public StoreEditor(String storeName, String address, String storeNaverURL, String phone) {
+    public StoreEditor(String storeName, String address, String category, String storeNaverURL, String phone, String hashtag) {
         this.storeName = storeName;
         this.address = address;
+        this.category = category;
         this.storeNaverURL = storeNaverURL;
         this.phone = phone;
+        this.hashtag = hashtag;
     }
 }
