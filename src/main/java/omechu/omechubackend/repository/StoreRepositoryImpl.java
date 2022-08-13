@@ -1,16 +1,15 @@
 package omechu.omechubackend.repository;
 
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import omechu.omechubackend.entity.QStore;
 import omechu.omechubackend.entity.Store;
 import omechu.omechubackend.request.PostSearch;
 
 import java.util.List;
 
 import static omechu.omechubackend.entity.QStore.store;
+import static omechu.omechubackend.entity.QYoutubeContent.youtubeContent;
 
 
 @RequiredArgsConstructor
@@ -21,10 +20,8 @@ public class StoreRepositoryImpl implements StoreRepositoryCustom {
     @Override
     public List<Store> getStoreList(PostSearch postSearch) {
         return jpaQueryFactory.selectFrom(store)
-                .where(
-                        keywordContainsStoreName(postSearch.getKeyword()),
-
-                        categoryEq(postSearch.getCategory()))
+                .join(store.youtubeContents, youtubeContent)
+                .where( keywordContainsAndEqCategory(postSearch.getKeyword(), postSearch.getCategory()) )
                 .orderBy(store.id.desc())
                 .fetch();
     }
@@ -40,20 +37,44 @@ public class StoreRepositoryImpl implements StoreRepositoryCustom {
         if(keyword == null || keyword == "") {
             return null;
         }
-        return store.storeName.contains(keyword);
+        return youtubeContent.youtuber.contains(keyword);
     }
 
     private BooleanExpression keywordContainsHashTag(String keyword) {
         if(keyword == null || keyword == "") {
             return null;
         }
-        return store.storeName.contains(keyword);
+        return store.hashtag.contains(keyword);
+    }
+
+    private BooleanExpression keywordContainsAddress(String keyword) {
+        if(keyword == null || keyword == "") {
+            return null;
+        }
+        return store.address.contains(keyword);
     }
     private BooleanExpression categoryEq(String category) {
         if(category == null || category == "") {
             return null;
         }
         return store.category.eq(category);
+    }
+
+    private BooleanExpression keywordContainsAndEqCategory(String keyword, String category) {
+
+        if( (keyword == null || keyword == "") && (category == null || category == "")) {
+            return null;
+        }
+
+        if(keyword == null || keyword == "") {
+            return store.category.eq(category);
+        }
+
+        return keywordContainsStoreName(keyword)
+                 .or(keywordContainsYoutuber(keyword))
+                .or(keywordContainsAddress(keyword))
+                 .or(keywordContainsHashTag(keyword))
+                 .and(categoryEq(category));
     }
 
 

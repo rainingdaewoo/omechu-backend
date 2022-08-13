@@ -2,14 +2,11 @@ package omechu.omechubackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import omechu.omechubackend.entity.Post;
-import omechu.omechubackend.exception.InvalidRequest;
 import omechu.omechubackend.request.PostCreate;
 import omechu.omechubackend.request.PostEdit;
 import omechu.omechubackend.request.PostSearch;
 import omechu.omechubackend.response.PostResponse;
 import omechu.omechubackend.service.PostService;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

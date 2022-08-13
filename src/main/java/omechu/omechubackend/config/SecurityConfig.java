@@ -84,7 +84,7 @@ public class SecurityConfig {
                         .antMatchers("/api/youtuber/**")
                         .access("hasRole('ROLE_ADMIN') or hasRole('ROLE_YOUTUBER')")
                         .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
-                        .antMatchers("/youtubeContent/**").permitAll()
+                        .antMatchers("/youtubeContent/**", "/store/**", "/stores/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()

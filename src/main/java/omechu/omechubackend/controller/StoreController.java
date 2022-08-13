@@ -29,6 +29,8 @@ public class StoreController {
 
     @GetMapping("/stores/test")
     public ResponseEntity<?> getStoreList(@ModelAttribute PostSearch postSearch) {
+        System.out.println("postSearch:  " + postSearch.getCategory());
+        System.out.println("postSearch:  " + postSearch.getKeyword());
         return new ResponseEntity<>(storeService.getYoutubeContent(postSearch), HttpStatus.OK); // 200
     }
     /**
