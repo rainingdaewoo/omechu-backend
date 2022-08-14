@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Board {
+public class Board extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "board_id")

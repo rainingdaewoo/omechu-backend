@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Getter @Setter
-public class User {
+public class User extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "user_id")
