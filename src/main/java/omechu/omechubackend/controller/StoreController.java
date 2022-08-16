@@ -62,4 +62,9 @@ public class StoreController {
     public void deleteYoutubeContent(@PathVariable Long id) {
         storeService.deleteStore(id);
     }
+
+    @GetMapping("/health")
+    public ResponseEntity<?> test() {
+        return getAllStores(); // 200
+    }
 }
