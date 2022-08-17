@@ -41,7 +41,7 @@ spring:
 
           kakao:
             client-id: 3c7e2a6cfb8ccd18568bc4e204e5d3ab
-            redirect-uri: http://3.34.171.86/login/oauth2/code/kakao
+            redirect-uri: http://43.200.20.53/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-authentication-method: POST
             client-name: Kakao
