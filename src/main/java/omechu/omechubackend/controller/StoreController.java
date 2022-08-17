@@ -65,6 +65,10 @@ public class StoreController {
 
     @GetMapping("/health")
     public ResponseEntity<?> test() {
-        return getAllStores(); // 200
-    }
+        return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); }// 200
+
+    @GetMapping("/")
+    public ResponseEntity<?> test2() {
+        return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); }// 200
+
 }
