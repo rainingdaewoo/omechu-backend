@@ -44,7 +44,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         //String jwt = jwtTokenUtil.generateTokenForOAuth(user.getUsername(), email, nickname, user.getRole());
 
         String url = makeRedirectUrl(jwt);
-        System.out.println("url: " + url);
+        logger.info("url: " + url);
 
         if (response.isCommitted()) {
             logger.debug("응답이 이미 커밋된 상태입니다. " + url + "로 리다이렉트하도록 바꿀 수 없습니다.");
@@ -54,9 +54,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     }
 
     private String makeRedirectUrl(String token) {
-//        return UriComponentsBuilder.fromUriString("http://localhost:3000/oauth2/redirect/"+token)
-//                .build().toUriString();
-        return UriComponentsBuilder.fromUriString("https://omechu.com/oauth2/redirect/"+token)
+        return UriComponentsBuilder.fromUriString("http://omechu.com/oauth2/redirect/"+token)
                 .build().toUriString();
     }
 }
