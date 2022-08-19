@@ -54,7 +54,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     }
 
     private String makeRedirectUrl(String token) {
-        return UriComponentsBuilder.fromUriString("http://omechu.com/oauth2/redirect/"+token)
+//        return UriComponentsBuilder.fromUriString("http://omechu.com/oauth2/redirect/"+token)
+//                .build().toUriString();
+        return UriComponentsBuilder.fromUriString("http://localhost:3000/oauth2/redirect/"+token)
                 .build().toUriString();
     }
 }

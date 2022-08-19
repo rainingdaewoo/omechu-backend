@@ -37,15 +37,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
      */
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
-        log.info("userRequest:" + userRequest.getClientRegistration());
-        log.info("userRequest:" + userRequest.getAccessToken());
-
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
-        log.info("userRequest:" + oAuth2User.getAttributes());
-
         OAuth2userInfo oAuth2userInfo = null;
+
         if( userRequest.getClientRegistration().getRegistrationId().equals("google") ) {
 
             log.info("구글 로그인 요청");

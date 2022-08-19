@@ -19,6 +19,7 @@ public class StoreResponseDto {
     private final String phone;
     private final String hashtag;
     private final List<YoutubeContentResponseDto> youtubeContents;
+    private final List<LikeResponseDto> likes;
 
     public StoreResponseDto(Store store) {
         this.id = store.getId();
@@ -29,6 +30,7 @@ public class StoreResponseDto {
         this.phone = store.getPhone();
         this.hashtag = store.getHashtag();
         this.youtubeContents =store.getYoutubeContents().stream().map(youtubeContent -> new YoutubeContentResponseDto(youtubeContent)).collect(Collectors.toList());
+        this.likes =store.getLikes().stream().map(like -> new LikeResponseDto(like)).collect(Collectors.toList());
     }
 
 

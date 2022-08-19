@@ -2,14 +2,11 @@ package omechu.omechubackend.service;
 
 import lombok.RequiredArgsConstructor;
 import omechu.omechubackend.entity.User;
-import omechu.omechubackend.entity.RoleType;
 import omechu.omechubackend.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

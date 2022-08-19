@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class YoutubeContentController {
+public class YoutubeContentApiController {
 
     private final YoutubeContentService youtubeContentService;
 

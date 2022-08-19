@@ -6,13 +6,15 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 public class Store extends BaseEntity{
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
     private Long id;
 
@@ -30,6 +32,9 @@ public class Store extends BaseEntity{
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     List<YoutubeContent> youtubeContents = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    List<Like> likes = new ArrayList<>();
 
     public Store() {
     }

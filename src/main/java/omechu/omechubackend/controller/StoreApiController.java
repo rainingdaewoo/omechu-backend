@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class StoreController {
+public class StoreApiController {
 
     private final StoreService storeService;
 
@@ -29,8 +29,6 @@ public class StoreController {
 
     @GetMapping("/stores/test")
     public ResponseEntity<?> getStoreList(@ModelAttribute PostSearch postSearch) {
-        System.out.println("postSearch:  " + postSearch.getCategory());
-        System.out.println("postSearch:  " + postSearch.getKeyword());
         return new ResponseEntity<>(storeService.getYoutubeContent(postSearch), HttpStatus.OK); // 200
     }
     /**
