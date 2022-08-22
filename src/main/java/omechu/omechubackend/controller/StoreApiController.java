@@ -18,25 +18,27 @@ public class StoreApiController {
 
     private final StoreService storeService;
 
+//    @GetMapping("/stores")
+//    public ResponseEntity<?> getAllStores() {
+//        return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); // 200
+//    }
+
     /**
      * 모든 가게 조회
+     * @param postSearch
      * @return
      */
     @GetMapping("/stores")
-    public ResponseEntity<?> getAllStores() {
-        return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); // 200
-    }
-
-    @GetMapping("/stores/test")
     public ResponseEntity<?> getStoreList(@ModelAttribute PostSearch postSearch) {
         return new ResponseEntity<>(storeService.getYoutubeContent(postSearch), HttpStatus.OK); // 200
     }
+
     /**
      * 특정 가게 조회
      * @param id
      * @return
      */
-    @GetMapping("/store/{id}")
+    @GetMapping("/api/admin/store/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
         return new ResponseEntity<>(storeService.findById(id), HttpStatus.OK); // 200
     }
@@ -46,7 +48,7 @@ public class StoreApiController {
      * @param id
      * @param request
      */
-    @PatchMapping("/store/{id}")
+    @PatchMapping("/api/admin/store/{id}")
     public void editYoutubeContent(@PathVariable Long id, @RequestBody @Valid YoutubeContentEdit request) {
         storeService.editYoutubeContent(id, request);
 
@@ -56,7 +58,7 @@ public class StoreApiController {
      * 가게 정보 정보 삭제
      * @param id
      */
-    @DeleteMapping("/store/{id}")
+    @DeleteMapping("/api/admin/store/{id}")
     public void deleteYoutubeContent(@PathVariable Long id) {
         storeService.deleteStore(id);
     }

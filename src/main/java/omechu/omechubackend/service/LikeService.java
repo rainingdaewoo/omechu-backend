@@ -10,6 +10,8 @@ import omechu.omechubackend.repository.StoreRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -34,5 +36,18 @@ public class LikeService {
     //사용자가 이미 좋아요 한 게시물인지 체크
     private boolean isNotAlreadyLike(User user, Store store) {
         return likeRepository.findByUserAndStore(user, store).isEmpty();
+    }
+
+    public boolean deleteLike (User user, Long storeId) {
+        Store store = storeRepository.findById(storeId).orElseThrow();
+
+        //중복 좋아요 방지
+        if( !isNotAlreadyLike(user, store)) {
+            Like findUserLike = likeRepository.findByUserAndStore(user, store).orElseThrow();
+            likeRepository.delete(findUserLike);
+            return true;
+        }
+
+        return false;
     }
 }

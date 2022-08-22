@@ -26,7 +26,6 @@ public class CorsConfig {
         config.addAllowedOrigin("http://omechu.com");
         config.addAllowedOrigin("http://58.233.47.121:3000");
         config.addAllowedOrigin("http://3.37.98.245");
-       // config.addAllowedOrigin("https://master.d1y7zww8xijf8t.amplifyapp.com:443");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

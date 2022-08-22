@@ -20,7 +20,7 @@ public class YoutubeContentApiController {
 
     private final YoutubeContentService youtubeContentService;
 
-    @PostMapping("/youtubeContent")
+    @PostMapping("/api/admin/youtubeContent")
     public ResponseEntity<?> postYoutubeContent(@RequestBody @Valid YoutubeContentCreate request){
         return new ResponseEntity<>(youtubeContentService.writeYoutubeContent(request), HttpStatus.CREATED); // 201
     }
