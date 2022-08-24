@@ -39,7 +39,9 @@ public class StoreService {
     }
 
     public List<StoreResponseDto> getYoutubeContent(PostSearch postSearch) {
-        return storeRepository.getStoreList(postSearch).stream().map(store -> new StoreResponseDto(store)).collect(Collectors.toList());
+        return storeRepository.getStoreList(postSearch).stream()
+                .map(store -> new StoreResponseDto(store))
+                .collect(Collectors.toList());
     }
 
 

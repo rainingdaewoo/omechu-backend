@@ -2,7 +2,6 @@ package omechu.omechubackend.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import omechu.omechubackend.entity.Post;
 
 /**
@@ -16,8 +15,8 @@ public class PostResponse {
     private final String content;
 
     public PostResponse(Post post) {
-        this.id = post.getId();
-        this.title = post.getTitle();
+        this.id      = post.getId();
+        this.title   = post.getTitle();
         this.content = post.getContent();
     }
     @Builder

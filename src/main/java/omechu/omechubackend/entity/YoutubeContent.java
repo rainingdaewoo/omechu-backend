@@ -31,21 +31,21 @@ public class YoutubeContent extends BaseEntity {
 
     @Builder
     public YoutubeContent(String URL, String imageURL, String youtuber, Store store) {
-        this.URL = URL;
+        this.URL      = URL;
         this.imageURL = imageURL;
         this.youtuber = youtuber;
-        this.store = store;
+        this.store    = store;
     }
 
     public YoutubeContentEditor.YoutubeContentEditorBuilder toYoutubeContentEditor() {
         return YoutubeContentEditor.builder()
-                .URL(URL)
-                .imageURL(imageURL)
-                .youtuber(youtuber);
+                                    .URL(URL)
+                                    .imageURL(imageURL)
+                                    .youtuber(youtuber);
     }
 
     public void editYoutubeContent(YoutubeContentEditor youtubeContentEditor) {
-        this.URL = youtubeContentEditor.getURL();
+        this.URL      = youtubeContentEditor.getURL();
         this.imageURL = youtubeContentEditor.getImageURL();
         this.youtuber = youtubeContentEditor.getYoutuber();
     }

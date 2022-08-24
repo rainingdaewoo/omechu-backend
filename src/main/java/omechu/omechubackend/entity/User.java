@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -35,6 +37,9 @@ public class User extends BaseEntity{
     private String password;
 
     private String nickname;
+
+    @OneToMany(mappedBy = "user")
+    private List<Request> requests = new ArrayList<>();
 
     /** 회원 등급 */
     @Enumerated(EnumType.STRING)

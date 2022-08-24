@@ -41,12 +41,12 @@ public class Store extends BaseEntity{
 
     @Builder
     public Store(String storeName, String address, String phone, String storeNaverURL, String category, String hashtag) {
-        this.storeName = storeName;
-        this.address = address;
-        this.phone = phone;
+        this.storeName     = storeName;
+        this.address       = address;
+        this.phone         = phone;
         this.storeNaverURL = storeNaverURL;
-        this.category = category;
-        this.hashtag = hashtag;
+        this.category      = category;
+        this.hashtag       = hashtag;
     }
 
     public StoreEditor.StoreEditorBuilder toStoreEditor() {

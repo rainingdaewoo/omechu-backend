@@ -80,16 +80,10 @@ public class SecurityConfig {
                 .formLogin().disable()                  // 폼로그인 해제
                 .httpBasic().disable()                  // http basic 해제
                 .authorizeRequests(authroize -> authroize
-//                        .antMatchers("/api/user/**")
-//                        .access("hasRole('ROLE_USER') or hasRole('ROLE_YOUTUBER') or hasRole('ROLE_ADMIN')")
-//                        .antMatchers("/api/youtuber/**")
-//                        .access("hasRole('ROLE_ADMIN') or hasRole('ROLE_YOUTUBER')")
-//                        .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
-//                        .antMatchers("/youtubeContent/**", "/store/**", "/stores/**", "/health/**", "/").permitAll()
                         .antMatchers("/api/user/**").authenticated()                           // 일반사용자 접근 가능
                         .antMatchers("/api/youtuber/**").hasAnyRole("YOUTUBER", "ADMIN") // 유튜버, 관리자 접근 가능
                         .antMatchers("/api/admin/**").hasRole("ADMIN")                         // 관리자만 접근 가능
-                        .antMatchers( "/health/**", "/","/stores").permitAll()
+                        .antMatchers( "/health/**", "/","/stores","/requests").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
