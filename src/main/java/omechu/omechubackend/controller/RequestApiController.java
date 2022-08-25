@@ -21,18 +21,48 @@ public class RequestApiController {
 
     private final RequestService requestService;
 
+    /**
+     * 요청 작성
+     * @param user
+     * @param requestCreate
+     * @return
+     */
     @PostMapping("/api/user/request")
     public ResponseEntity<?> postRequest(@AuthenticationPrincipal PrincipalDetail user, @RequestBody @Valid RequestCreate requestCreate){
         return new ResponseEntity<>(requestService.postRequest(user.getUser(), requestCreate), HttpStatus.CREATED); // 201
     }
 
+    /**
+     * 요청 게시글 리스트 조회
+     * @param postSearch
+     * @param pageable
+     * @return
+     */
     @GetMapping("/requests")
     public ResponseEntity<?> getRequestList(@ModelAttribute PostSearch postSearch, Pageable pageable){
         return new ResponseEntity<>(requestService.getRequestList(postSearch, pageable), HttpStatus.OK); // 201
     }
 
+    /**
+     * 특정 요청 게시글 조회
+     * @param requestId
+     * @return
+     */
     @GetMapping("/api/user/request/{requestId}")
     public ResponseEntity<?> findByRequestId(@PathVariable Long requestId){
         return new ResponseEntity<>(requestService.findById(requestId), HttpStatus.OK); // 200
+    }
+
+    @PatchMapping("/api/user/request/{requestId}")
+    public void updateRequest(@PathVariable Long requestId,
+                              @AuthenticationPrincipal PrincipalDetail user,
+                              @RequestBody @Valid RequestCreate request){
+        requestService.editRequest(requestId, user, request);
+    }
+
+    @DeleteMapping("/api/user/request/{requestId}")
+    public void deleteRequest(@PathVariable Long requestId,
+                              @AuthenticationPrincipal PrincipalDetail user){
+        requestService.deleteRequest(requestId, user);
     }
 }

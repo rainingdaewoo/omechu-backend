@@ -3,6 +3,7 @@ package omechu.omechubackend.service;
 import lombok.RequiredArgsConstructor;
 import omechu.omechubackend.entity.User;
 import omechu.omechubackend.repository.UserRepository;
+import omechu.omechubackend.response.UserResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,11 @@ public class UserService {
     /**
      * 특정 회원 조회
      */
-    public User findUser(Long userId) {
-        return userRepository.findById(userId).get();
+    public UserResponseDto findUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("id를 확인해주세요"));
+        UserResponseDto userResponseDto = new UserResponseDto(user);
+        return userResponseDto;
     }
 
     @Transactional

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
+import omechu.omechubackend.request.RequestCreate;
 
 import javax.persistence.*;
 
@@ -25,8 +26,7 @@ public class Request extends BaseEntity{
 
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -41,5 +41,11 @@ public class Request extends BaseEntity{
 
     public Request() {
 
+    }
+
+    public void edit(RequestCreate requestCreate) {
+        title = requestCreate.getTitle();
+        content = requestCreate.getContent();
+        category = requestCreate.getCategory();
     }
 }

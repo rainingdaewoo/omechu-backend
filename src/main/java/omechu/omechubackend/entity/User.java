@@ -1,5 +1,6 @@
 package omechu.omechubackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
