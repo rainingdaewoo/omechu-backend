@@ -49,9 +49,6 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private RoleType role;
 
-    @CreationTimestamp //  시간 자동 입력, LocalDateTime으로 바꿀지 논의 필요.
-    private Timestamp createDate;
-
     public User() {
     }
 

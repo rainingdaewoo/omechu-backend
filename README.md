@@ -71,3 +71,6 @@
 | 특정 가게 수정      | PATCH   | /api/user/request/{requestId}               | 모든 가게 수정         | ️☑️ |
 
 ## ERD
+
+![오메추 - 클래스 다이어그램 drawio](https://user-images.githubusercontent.com/78574530/187074552-9266b7ed-1761-48b4-9d8a-66c8ea0d9bf1.png)
+![오메추 - ERD drawio](https://user-images.githubusercontent.com/78574530/187075405-342f3b89-6e34-4009-aea1-b5543fdb2381.png)
