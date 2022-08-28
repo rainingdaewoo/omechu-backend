@@ -53,6 +53,12 @@ public class RequestApiController {
         return new ResponseEntity<>(requestService.findById(requestId), HttpStatus.OK); // 200
     }
 
+    /**
+     * 특정 요청 게시글 수정
+     * @param requestId
+     * @param user
+     * @param request
+     */
     @PatchMapping("/api/user/request/{requestId}")
     public void updateRequest(@PathVariable Long requestId,
                               @AuthenticationPrincipal PrincipalDetail user,
@@ -60,6 +66,11 @@ public class RequestApiController {
         requestService.editRequest(requestId, user, request);
     }
 
+    /**
+     * 특정 요청 게시글 삭제
+     * @param requestId
+     * @param user
+     */
     @DeleteMapping("/api/user/request/{requestId}")
     public void deleteRequest(@PathVariable Long requestId,
                               @AuthenticationPrincipal PrincipalDetail user){

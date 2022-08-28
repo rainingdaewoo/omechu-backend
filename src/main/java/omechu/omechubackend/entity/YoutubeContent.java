@@ -25,16 +25,21 @@ public class YoutubeContent extends BaseEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public YoutubeContent() {
 
     }
 
     @Builder
-    public YoutubeContent(String URL, String imageURL, String youtuber, Store store) {
+    public YoutubeContent(String URL, String imageURL, String youtuber, Store store, User user) {
         this.URL      = URL;
         this.imageURL = imageURL;
         this.youtuber = youtuber;
         this.store    = store;
+        this.user     = user;
     }
 
     public YoutubeContentEditor.YoutubeContentEditorBuilder toYoutubeContentEditor() {

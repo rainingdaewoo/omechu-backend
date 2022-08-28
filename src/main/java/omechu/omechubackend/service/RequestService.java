@@ -46,7 +46,7 @@ public class RequestService {
     public RequestResponseDto findById(Long requestId) {
 
         Request request = requestRepository.findById(requestId)
-                .orElseThrow(() -> new IllegalArgumentException("id를 확인해주세요"));
+                .orElseThrow(() -> new PostNotFound());
         RequestResponseDto requestResponse = new RequestResponseDto(request);
 
         return requestResponse;

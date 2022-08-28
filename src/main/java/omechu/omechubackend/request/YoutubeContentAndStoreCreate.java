@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @ToString
-public class YoutubeContentCreate {
+public class YoutubeContentAndStoreCreate {
 
     @NotBlank(message = "가게 이름을 입력해주세요.")
     private String storeName;
@@ -33,11 +33,11 @@ public class YoutubeContentCreate {
     private String hashtag;
 
 
-    public YoutubeContentCreate() {
+    public YoutubeContentAndStoreCreate() {
     }
 
     @Builder
-    public YoutubeContentCreate(String storeName, String youtubeURL, String category, String storeAddress, String youTuber, String hashtag) {
+    public YoutubeContentAndStoreCreate(String storeName, String youtubeURL, String category, String storeAddress, String youTuber, String hashtag) {
         this.storeName = storeName;
         this.youtubeURL = youtubeURL;
         this.category = category;

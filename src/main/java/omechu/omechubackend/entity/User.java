@@ -42,6 +42,9 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "user")
     private List<Request> requests = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<YoutubeContent> youtubeContents = new ArrayList<>();
+
     /** 회원 등급 */
     @Enumerated(EnumType.STRING)
     private RoleType role;

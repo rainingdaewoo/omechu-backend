@@ -6,7 +6,7 @@ import omechu.omechubackend.entity.Store;
 import omechu.omechubackend.entity.YoutubeContent;
 import omechu.omechubackend.repository.YoutubeContentRepository;
 import omechu.omechubackend.repository.StoreRepository;
-import omechu.omechubackend.request.YoutubeContentCreate;
+import omechu.omechubackend.request.YoutubeContentAndStoreCreate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class YoutubeContentService {
      * 유튜브 영상 맛집 작성
      * @param request
      */
-    public YoutubeContent writeYoutubeContent(YoutubeContentCreate request) {
+    public YoutubeContent writeYoutubeContent(YoutubeContentAndStoreCreate request) {
 
         Store store = Store.builder()
                 .storeName(request.getStoreName())
@@ -59,17 +59,5 @@ public class YoutubeContentService {
 
         return youtubeContentRepository.save(youtubeContent);
     }
-
-    /**
-     * 게시글 전체 불러오기
-     * @return
-     */
-    public List<Store> getAllYoutubeContent() {
-        System.out.println("getAllYoutubeContent" + youtubeContentRepository.findAll());
-       // return youtubeContentRepository.findAll();
-
-        return storeRepository.findAll();
-    }
-
 
 }

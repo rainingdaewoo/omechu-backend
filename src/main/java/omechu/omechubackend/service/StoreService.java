@@ -8,6 +8,7 @@ import omechu.omechubackend.repository.StoreRepository;
 import omechu.omechubackend.repository.YoutubeContentRepository;
 import omechu.omechubackend.request.PostEdit;
 import omechu.omechubackend.request.PostSearch;
+import omechu.omechubackend.request.YoutubeContentAndStoreCreate;
 import omechu.omechubackend.request.YoutubeContentEdit;
 import omechu.omechubackend.response.StoreResponseDto;
 import org.springframework.stereotype.Service;
@@ -115,5 +116,44 @@ public class StoreService {
                 .orElseThrow(() -> new PostNotFound());
 
         storeRepository.delete(store);
+    }
+
+    @Transactional
+    public void postYoutubeContentAndStore(User user, YoutubeContentAndStoreCreate request) {
+
+        Store store = Store.builder()
+                .storeName(request.getStoreName())
+                .category(request.getCategory())
+                .address(request.getStoreAddress())
+                .storeNaverURL(request.getStoreNaverURL())
+                .hashtag(request.getHashtag())
+                .build();
+
+        storeRepository.save(store);
+
+        log.debug("==============유튜브 영상 이미지 링크 추출==============");
+        int startYoutubeId = request.getYoutubeURL().indexOf("?v=");
+        int lastYoutubeId = request.getYoutubeURL().lastIndexOf("&t=");
+        String youtubeId = "";
+
+        if(lastYoutubeId == -1) {
+            youtubeId = request.getYoutubeURL().substring(startYoutubeId + 3);
+        } else {
+            youtubeId = request.getYoutubeURL().substring(startYoutubeId + 3, lastYoutubeId);
+        }
+
+        String imageURL = "https://i1.ytimg.com/vi/"+ youtubeId + "/mqdefault.jpg";
+
+        log.debug("==============유튜브 영상 이미지 링크 추출 끝==============");
+
+        YoutubeContent youtubeContent = YoutubeContent.builder()
+                .URL(request.getYoutubeURL())
+                .youtuber(request.getYouTuber())
+                .imageURL(imageURL)
+                .store(store)
+                .user(user)
+                .build();
+
+        youtubeContentRepository.save(youtubeContent);
     }
 }

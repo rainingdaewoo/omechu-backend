@@ -2,11 +2,14 @@ package omechu.omechubackend.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import omechu.omechubackend.config.auth.PrincipalDetail;
 import omechu.omechubackend.request.PostSearch;
+import omechu.omechubackend.request.YoutubeContentAndStoreCreate;
 import omechu.omechubackend.request.YoutubeContentEdit;
 import omechu.omechubackend.service.StoreService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,10 +21,7 @@ public class StoreApiController {
 
     private final StoreService storeService;
 
-//    @GetMapping("/stores")
-//    public ResponseEntity<?> getAllStores() {
-//        return new ResponseEntity<>(storeService.getAllYoutubeContent(), HttpStatus.OK); // 200
-//    }
+
 
     /**
      * 모든 가게 조회
@@ -44,7 +44,7 @@ public class StoreApiController {
     }
 
     /**
-     * 가게 정보 수정
+     * 가게 정보 및 유튜브 컨텐츠 수정
      * @param id
      * @param request
      */
@@ -55,12 +55,23 @@ public class StoreApiController {
     }
 
     /**
-     * 가게 정보 정보 삭제
+     * 가게 정보 및 유튜브 컨텐츠 삭제
      * @param id
      */
     @DeleteMapping("/api/admin/store/{id}")
     public void deleteYoutubeContent(@PathVariable Long id) {
         storeService.deleteStore(id);
+    }
+
+    /**
+     * 가게 정보 및 유튜브 컨텐츠 생성
+     * @param user
+     * @param request
+     */
+    @PostMapping("/api/admin/store")
+    public void postYoutubeContent(@AuthenticationPrincipal PrincipalDetail user,
+                                   @RequestBody @Valid YoutubeContentAndStoreCreate request){
+        storeService.postYoutubeContentAndStore(user.getUser(),request);
     }
 
     @GetMapping("/health")

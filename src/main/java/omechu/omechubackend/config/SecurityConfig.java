@@ -42,20 +42,19 @@ public class SecurityConfig {
     @Autowired
     private JwtRequestFilter JwtRequestFilter;
 
-    /*@Bean
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.apply(new MyCustomDsl())
                 .and()
                     .formLogin().disable()                  // 폼로그인 해제
                     .httpBasic().disable()                  // http basic 해제
-                    .authorizeRequests()
-                    .antMatchers("/", "/auth/**", "/login").permitAll()                //이 링크들은 허용
-                    .antMatchers("/api/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_YOUTUBER') or hasRole('ROLE_ADMIN')")
-                    .antMatchers("/api/youtuber/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_YOUTUBER')")
-                    .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
-                    .anyRequest().authenticated()//  인증이 있어야 함(로그인)
-                .and()
+                    .authorizeRequests(authroize -> authroize
+                        .antMatchers("/api/user/**").authenticated()                           // 일반사용자 접근 가능
+                        .antMatchers("/api/youtuber/**").hasAnyRole("YOUTUBER", "ADMIN") // 유튜버, 관리자 접근 가능
+                        .antMatchers("/api/admin/**").hasRole("ADMIN")                         // 관리자만 접근 가능
+                        .antMatchers( "/health/**", "/","/stores","/requests").permitAll()
+                        .anyRequest().authenticated())
                     .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                     .sessionManagement()
@@ -69,36 +68,6 @@ public class SecurityConfig {
         http.addFilterBefore(JwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
-    }*/
-
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.apply(new MyCustomDsl())
-                .and()
-                .formLogin().disable()                  // 폼로그인 해제
-                .httpBasic().disable()                  // http basic 해제
-                .authorizeRequests(authroize -> authroize
-                        .antMatchers("/api/user/**").authenticated()                           // 일반사용자 접근 가능
-                        .antMatchers("/api/youtuber/**").hasAnyRole("YOUTUBER", "ADMIN") // 유튜버, 관리자 접근 가능
-                        .antMatchers("/api/admin/**").hasRole("ADMIN")                         // 관리자만 접근 가능
-                        .antMatchers( "/health/**", "/","/stores","/requests").permitAll()
-                        .anyRequest().authenticated())
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 세션 사용 X
-                .and()
-                .oauth2Login().defaultSuccessUrl("/login-success")
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .userInfoEndpoint()
-                .userService(principalOauth2UserService);
-
-        http.addFilterBefore(JwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-
     }
 
     public class MyCustomDsl extends AbstractHttpConfigurer<MyCustomDsl, HttpSecurity> {
@@ -110,25 +79,4 @@ public class SecurityConfig {
         }
     }
 
-    /*@Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.apply(new MyCustomDsl()) .and().
-                authorizeRequests()
-                .antMatchers("/user/**").authenticated()
-                .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .anyRequest().permitAll()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .oauth2Login().defaultSuccessUrl("/login-success")
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .userInfoEndpoint()
-                .userService(principalOauth2UserService);
-
-
-        return http.build();
-    }*/
 }
