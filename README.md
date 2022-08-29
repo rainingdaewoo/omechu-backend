@@ -9,7 +9,7 @@
 
 ## 🚀 프로젝트 주요 관심사
 - 이유와 근거가 명확한 기술의 사용을 지향합니다.
--  이 코드를 "왜" 썼는가를 생각하고 사용하였습니다.
+- 이 코드를 "왜" 써야하는지를 생각하였습니다.
 - 백엔드와 프론트가 분산된 환경에 익숙해지고자 하였습니다. 
 - 반복적인 작업은 자동화하여 개발의 효율을 높이기 위해 노력하였습니다.
   - 젠킨스 CI/CD 구축
@@ -21,13 +21,12 @@
 - Spring Boot 2.7.
   - Spring Framework에서 클래스패스의 라이브러리를 자동으로 인식하여 설정해주고 내장 서버를 제공하는 등 많은 편의성을 제공하기 때문에 빠른 개발이 가능하다고 생각하여 Spring Boot를 사용했습니다.
 - Spring Security
-  - 서비스에서 회원 기능을 지원하기 때문에 이에 필수적인 인증, 인가 기능을 적용하기 위해 사용했습니다.
+  - 스프링 시큐리티에서 인증, 인가 기능을 적용하기 위해 사용했습니다.
 - JWT
-  - 토큰 기반 인증을 구현하기 위해 사용하였습니다. Session 방식보다 확장성이 높고, 자원낭비가 덜하다고 생각해 (세션 클러스터링 등) 로그인 방식으로 JWT를 사용했습니다.
-  
+  - 토큰 기반 인증을 구현하기 위해 사용하였습니다. Session 방식보다 확장성이 높고, 자원낭비가 덜하다고 생각해 로그인 방식으로 JWT를 사용했습니다.
 - AWS EC2 배포
-  - 스프링부트 프로젝트와 AWS RDS 연동으로 'A Little Vanilla' 에 웹사이트를 배포했습니다.
-- MySQL MariaDB
+  - 스프링부트 프로젝트와 AWS RDS 연동으로 'omechu' 에 웹사이트를 배포했습니다.
+- MariaDB
 - GitHub Action, AWS CodePipeline CI/CD
   - repository에 push가 발생 할 때마다 빌드와 배포를 자동화하여 개발 효율성을 높일 수 있도록 GitHub Action, AWS CodePipeline를 활용하였습니다
 
@@ -72,5 +71,5 @@
 
 ## ERD
 
-![오메추 - 클래스 다이어그램 drawio](https://user-images.githubusercontent.com/78574530/187074552-9266b7ed-1761-48b4-9d8a-66c8ea0d9bf1.png)
 ![오메추 - ERD drawio](https://user-images.githubusercontent.com/78574530/187075405-342f3b89-6e34-4009-aea1-b5543fdb2381.png)
+![오메추 - 클래스 다이어그램 drawio](https://user-images.githubusercontent.com/78574530/187074552-9266b7ed-1761-48b4-9d8a-66c8ea0d9bf1.png)
