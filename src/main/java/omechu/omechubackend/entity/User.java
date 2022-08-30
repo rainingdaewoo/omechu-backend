@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import omechu.omechubackend.request.RequestCreate;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -38,6 +39,7 @@ public class User extends BaseEntity{
     private String password;
 
     private String nickname;
+    private String gender;
 
     @OneToMany(mappedBy = "user")
     private List<Request> requests = new ArrayList<>();
@@ -53,7 +55,7 @@ public class User extends BaseEntity{
     }
 
     @Builder
-    public User(Long id, String provider, String providerId, String username, String email, String password, String nickname, RoleType role) {
+    public User(Long id, String provider, String providerId, String username, String email, String password, String nickname, RoleType role, String gender) {
         this.id = id;
         this.provider = provider;
         this.providerId = providerId;
@@ -62,5 +64,11 @@ public class User extends BaseEntity{
         this.password = password;
         this.nickname = nickname;
         this.role = role;
+        this.gender = gender;
+    }
+
+    public void edit(User user) {
+        nickname = user.getNickname();
+        gender = user.getGender();
     }
 }

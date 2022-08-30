@@ -6,9 +6,9 @@ import omechu.omechubackend.entity.User;
 @Getter
 public class UserResponseDto {
 
-    private String username;
+    private String nickname;
 
     public UserResponseDto(User user) {
-        this.username = user.getUsername();
+        this.nickname = user.getNickname();
     }
 }

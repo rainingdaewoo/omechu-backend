@@ -37,11 +37,25 @@ public class UserService {
     public User updateUser(Long id, User user) {
 
         User findUser = userRepository.findById(id).
-                orElseThrow(
-                        ()->new IllegalArgumentException("id를 확인해주세요")
-                );
+                orElseThrow( ()->new IllegalArgumentException("id를 확인해주세요") );
 
         findUser.setUsername(user.getUsername());
         return findUser;
+    }
+
+    public boolean checkNickname(String nickname) {
+        User findUser = userRepository.findByNickname(nickname);
+
+        if (findUser == null ) {
+            return true;
+        }
+        return false;
+    }
+
+    @Transactional
+    public void updateUserDetail(Long userId, User user) {
+        User findUser = userRepository.findById(userId).
+                orElseThrow( ()->new IllegalArgumentException("id를 확인해주세요") );
+        findUser.edit(user);
     }
 }

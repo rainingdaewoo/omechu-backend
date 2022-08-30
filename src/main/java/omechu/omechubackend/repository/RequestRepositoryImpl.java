@@ -40,7 +40,7 @@ public class RequestRepositoryImpl implements RequestRepositoryCustom{
                                                     request.category,
                                                     request.state,
                                                     request.createdDate,
-                                                    request.user.username
+                                                    request.user.nickname
                                             ))
                                             .from(request)
                                             .offset(pageable.getOffset())

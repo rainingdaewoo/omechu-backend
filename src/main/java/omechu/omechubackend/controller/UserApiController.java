@@ -27,4 +27,14 @@ public class UserApiController {
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user){
         return new ResponseEntity<>(userService.updateUser(id, user), HttpStatus.OK); // 200
     }
+
+    @GetMapping("/api/user/checkNickname/{nickname}")
+    public boolean checkNickname(@PathVariable String nickname) {
+        return userService.checkNickname(nickname);
+    }
+
+    @PatchMapping("/api/user/checkNickname/{userId}")
+    public void updateUserDetail(@PathVariable Long userId, @RequestBody User user) {
+        userService.updateUserDetail(userId, user);
+    }
 }
