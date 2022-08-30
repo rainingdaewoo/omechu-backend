@@ -28,8 +28,8 @@ public class RequestApiController {
      * @return
      */
     @PostMapping("/api/user/request")
-    public ResponseEntity<?> postRequest(@AuthenticationPrincipal PrincipalDetail user, @RequestBody @Valid RequestCreate requestCreate){
-        return new ResponseEntity<>(requestService.postRequest(user.getUser(), requestCreate), HttpStatus.CREATED); // 201
+    public void postRequest(@AuthenticationPrincipal PrincipalDetail user, @RequestBody @Valid RequestCreate requestCreate){
+        requestService.postRequest(user.getUser(), requestCreate);
     }
 
     /**

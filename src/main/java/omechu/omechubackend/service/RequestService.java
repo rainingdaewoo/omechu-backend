@@ -24,7 +24,7 @@ public class RequestService {
 
     private final RequestRepository requestRepository;
     @Transactional
-    public Request postRequest(User user, RequestCreate requestCreate) {
+    public void postRequest(User user, RequestCreate requestCreate) {
         Request request = Request.builder()
                 .title(requestCreate.getTitle())
                 .category(requestCreate.getCategory())
@@ -32,8 +32,7 @@ public class RequestService {
                 .state("WAITING")
                 .user(user)
                 .build();
-
-        return requestRepository.save(request);
+        requestRepository.save(request);
     }
 
     public  Page<RequestResponseDto> getRequestList(PostSearch postSearch, Pageable pageable) {
