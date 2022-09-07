@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -71,7 +72,7 @@ public class RequestService {
 
         Long findRequestUserId = findRequest.getUser().getId();
 
-        if(findRequestUserId == user.getUser().getId()) {  // 게시글 ID의 userId와 접속한 유저의 userId가 동일할 때만 삭제
+        if(Objects.equals(findRequestUserId, user.getUser().getId())) {  // 게시글 ID의 userId와 접속한 유저의 userId가 동일할 때만 삭제
             requestRepository.delete(findRequest);
         } else {
             throw new RuntimeException("게시글 작성자와 접속자가 일치하지 않습니다.");

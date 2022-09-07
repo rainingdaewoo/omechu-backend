@@ -13,10 +13,9 @@
 - 백엔드와 프론트가 분산된 환경에 익숙해지고자 하였습니다. 
 - 반복적인 작업은 자동화하여 개발의 효율을 높이기 위해 노력하였습니다.
   - 젠킨스 CI/CD 구축
-  -  ~~Swagger UI로 테스트 코드 작성 및 문서화~~
 
 ## 기술 스택
-> Java, Spring Boot, Spring Security, OAuth2 client, JPA + QueryDSL, Lombok, Gradle, ~~Swagger UI~~
+> Java, Spring Boot, Spring Security, OAuth2 client, JPA + QueryDSL, Lombok, Gradle
 
 - Spring Boot 2.7.
   - Spring Framework에서 클래스패스의 라이브러리를 자동으로 인식하여 설정해주고 내장 서버를 제공하는 등 많은 편의성을 제공하기 때문에 빠른 개발이 가능하다고 생각하여 Spring Boot를 사용했습니다.
@@ -34,12 +33,14 @@
 
 ### 로그인/회원가입 및 회원 정보
 
-| Feature  | Request | API                        | 설명        | 체크  |
-|----------|---------|----------------------------|-----------|-----|
-| 회원 가입    |         |                            | Oauth2 사용 | ☑️  |
-| 회원 정보    | GET     | /api/user/user/{id}        | 회원 정보 조회  | ☑️  |
-| 회원 정보 수정 | PATCH   | /api/user/user/modify/{id} | 회원 정보 수정  | ️   |
-| 기타       | GET     | /, /health                 | AWS 헬스 체크 | ☑️  |
+| Feature   | Request | API                                | 설명          | 체크  |
+|-----------|---------|------------------------------------|-------------|-----|
+| 회원 가입     |         |                                    | Oauth2 사용   | ☑️  |
+| 회원 정보     | GET     | /api/user/user/{id}                | 회원 정보 조회    | ☑️  |
+| 닉네임 중복 확인 | GET     | /api/user/checkNickname/{nickname} | 닉네임 중복 확인   | ☑️  |
+| 추가 정보 기입  | PATCH   | /api/user/checkNickname/{userId}   | 추가 회원 정보 기입 | ☑️  |
+| 회원 정보 수정  | PATCH   | /api/user/user/modify/{id}         | 회원 정보 수정    | ️   |
+| 기타        | GET     | /, /health                         | AWS 헬스 체크   | ☑️  |
 
 
 
