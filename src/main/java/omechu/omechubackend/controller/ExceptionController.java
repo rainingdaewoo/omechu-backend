@@ -32,7 +32,6 @@ public class ExceptionController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     public ErrorResponse invalidRequestHandler(MethodArgumentNotValidException e) {
-        System.out.println("============================");
         Map<String, String> validationInitialValue = new HashMap<>();
         // MethodArgumentNotValidException
         ErrorResponse response = ErrorResponse.builder()

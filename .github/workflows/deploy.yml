@@ -20,6 +20,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
         shell: bash
+        # UTC가 기준이기 때문에 한국시간으로 맞추기 위해 +9시간.
       - name: Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
@@ -30,6 +31,7 @@ jobs:
         run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
         shell: bash
 
+      # EB에 CD 하기 위해 추가 작성
       - name: Generate deployment package
         run: |
           mkdir -p deploy
@@ -42,8 +44,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: omechu-backend
-          environment_name: Omechubackend-env
-          version_label: aws-v5-${{steps.current-time.outputs.formattedTime}}
-          region: ap-northeast-2
+          application_name: omechu-backend   # 엘리스틱 빈스톡 애플리케이션 이름!
+          environment_name: Omechubackend-env   # 엘리스틱 빈스톡 환경 이름!
+          version_label: omechu-09-${{steps.current-time.outputs.formattedTime}}
+          region: ap-northeast-2  # 서울
           deployment_package: deploy/deploy.zip
